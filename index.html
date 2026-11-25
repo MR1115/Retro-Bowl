@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0b1016">
+<title>Pixel Gridiron</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="wrap">
+  <canvas id="cv" width="480" height="270"></canvas>
+
+  <div id="playcall" class="bar">
+    <button data-c="run">RUN</button>
+    <button data-c="pass">PASS</button>
+    <button data-c="punt">PUNT</button>
+    <button data-c="fg">FIELD GOAL</button>
+  </div>
+  <button id="bQuit" class="corner" title="Quit to menu">&#10005;</button>
+
+  <div id="menu" class="screen on">
+    <h1>PIXEL<br><span>GRIDIRON</span></h1>
+    <div class="cols">
+      <div class="col">
+        <label>YOUR TEAM</label>
+        <input id="tname" maxlength="10" autocomplete="off" spellcheck="false">
+        <label>COLORS</label>
+        <div id="swatches"></div>
+        <label>QUARTER LENGTH</label>
+        <div class="seg" id="qlen">
+          <button data-v="2">2 MIN</button><button data-v="3">3 MIN</button><button data-v="5">5 MIN</button>
+        </div>
+      </div>
+      <div class="col">
+        <button id="bCpu" class="big">PLAY VS CPU</button>
+        <button id="bHost" class="big alt">HOST ONLINE</button>
+        <button id="bJoin" class="big alt">JOIN ONLINE</button>
+        <button id="bHelp" class="small">HOW TO PLAY</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="lobby" class="screen">
+    <h2 id="lobbyTitle">ONLINE</h2>
+    <div id="hostBox">
+      <p class="dim">GIVE YOUR FRIEND THIS CODE</p>
+      <div id="roomCode">-----</div>
+      <button id="bCopy" class="small">COPY INVITE LINK</button>
+    </div>
+    <div id="joinBox">
+      <p class="dim">ENTER YOUR FRIEND'S CODE</p>
+      <input id="joinCode" maxlength="5" autocomplete="off" spellcheck="false" placeholder="ABCDE">
+      <button id="bConnect" class="big">CONNECT</button>
+    </div>
+    <p id="lobbyStatus" class="dim"></p>
+    <button id="bBack" class="small">BACK</button>
+  </div>
+
+  <div id="help" class="screen">
+    <h2>HOW TO PLAY</h2>
+    <div class="helptext">
+      <p><b>OFFENSE</b> Pick RUN or PASS. On a pass, tap or click where you want to throw. Lead your receivers!</p>
+      <p><b>BALL CARRIER</b> Runs forward on his own. Drag up or down (or use the arrow keys/WASD) to steer. Tap or press SPACE to dive.</p>
+      <p><b>DEFENSE</b> You control the highlighted defender. Drag or use the arrow keys to move. Tap or press SPACE to dive at the runner or the ball.</p>
+      <p><b>KICKING</b> Tap when the needle is in the green. Long kicks have a smaller window.</p>
+      <p><b>ONLINE</b> One player hosts and shares the 5-letter code. The other picks JOIN and types it in.</p>
+    </div>
+    <button id="bHelpBack" class="small">BACK</button>
+  </div>
+
+  <div id="over" class="screen">
+    <h2 id="overTitle">FINAL</h2>
+    <p id="overScore"></p>
+    <button id="bAgain" class="big">PLAY AGAIN</button>
+    <button id="bMenu" class="small">MENU</button>
+  </div>
+
+  <div id="rotate">Rotate your phone sideways for a bigger field</div>
+</div>
+<script src="js/vendor/peerjs.min.js"></script>
+<script src="js/sim.js"></script>
+<script src="js/game.js"></script>
+</body>
+</html>

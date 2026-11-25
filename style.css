@@ -1,0 +1,76 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body {
+  height: 100%; background: #0b1016; color: #f4f4f4; overflow: hidden;
+  font-family: 'Press Start 2P', ui-monospace, monospace;
+  touch-action: none; -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+#wrap { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); --u: 2; }
+canvas {
+  display: block; width: 100%; height: 100%; background: #1d4d22;
+  image-rendering: pixelated; image-rendering: crisp-edges;
+}
+button, input { font-family: inherit; color: inherit; }
+button {
+  cursor: pointer; border: 0; background: #e8b923; color: #1a1a1a;
+  font-size: calc(var(--u) * 8px); padding: calc(var(--u) * 6px) calc(var(--u) * 8px);
+  box-shadow: 0 calc(var(--u) * 3px) 0 #8f6d0c; border-radius: calc(var(--u) * 2px);
+}
+button:active { transform: translateY(calc(var(--u) * 2px)); box-shadow: 0 calc(var(--u) * 1px) 0 #8f6d0c; }
+button:disabled { opacity: .35; cursor: default; }
+button.alt { background: #2f9bd6; color: #fff; box-shadow: 0 calc(var(--u) * 3px) 0 #175a86; }
+button.small { background: #3a4452; color: #fff; box-shadow: 0 calc(var(--u) * 2px) 0 #1b2129; font-size: calc(var(--u) * 6px); }
+button.big { width: 100%; }
+
+.screen {
+  position: absolute; inset: 0; display: none; flex-direction: column; align-items: center; justify-content: center;
+  gap: calc(var(--u) * 7px); background: rgba(8, 12, 18, .9); text-align: center; padding: calc(var(--u) * 10px);
+}
+.screen.on { display: flex; }
+h1 { font-size: calc(var(--u) * 15px); line-height: 1.25; color: #fff; text-shadow: calc(var(--u) * 2px) calc(var(--u) * 2px) 0 #c0392b; }
+h1 span { color: #e8b923; }
+h2 { font-size: calc(var(--u) * 12px); color: #e8b923; }
+p { font-size: calc(var(--u) * 7px); line-height: 1.6; }
+.dim { color: #9fb0c3; }
+label { font-size: calc(var(--u) * 6px); color: #9fb0c3; display: block; text-align: left; }
+.cols { display: flex; gap: calc(var(--u) * 16px); align-items: center; }
+.col { display: flex; flex-direction: column; gap: calc(var(--u) * 5px); width: calc(var(--u) * 150px); }
+input {
+  background: #16202b; border: calc(var(--u) * 1px) solid #3a4452; font-size: calc(var(--u) * 8px);
+  padding: calc(var(--u) * 5px); width: 100%; text-transform: uppercase; outline: none; border-radius: calc(var(--u) * 2px);
+}
+input:focus { border-color: #e8b923; }
+#swatches { display: flex; gap: calc(var(--u) * 4px); flex-wrap: wrap; }
+.sw {
+  width: calc(var(--u) * 14px); height: calc(var(--u) * 14px); padding: 0; box-shadow: none;
+  border: calc(var(--u) * 1px) solid #000; border-radius: calc(var(--u) * 2px);
+}
+.sw.on { outline: calc(var(--u) * 2px) solid #fff; }
+.seg { display: flex; gap: calc(var(--u) * 3px); }
+.seg button { flex: 1; background: #3a4452; color: #fff; box-shadow: none; font-size: calc(var(--u) * 6px); padding: calc(var(--u) * 5px) 0; }
+.seg button.on { background: #e8b923; color: #1a1a1a; }
+#roomCode { font-size: calc(var(--u) * 24px); letter-spacing: calc(var(--u) * 4px); color: #fff; margin: calc(var(--u) * 4px) 0; }
+#joinCode { width: calc(var(--u) * 110px); text-align: center; font-size: calc(var(--u) * 14px); letter-spacing: calc(var(--u) * 3px); margin-bottom: calc(var(--u) * 6px); }
+#joinBox .big { width: calc(var(--u) * 110px); }
+#hostBox, #joinBox { display: none; flex-direction: column; align-items: center; }
+#lobby.host #hostBox, #lobby.join #joinBox { display: flex; }
+.helptext { max-width: calc(var(--u) * 400px); text-align: left; display: flex; flex-direction: column; gap: calc(var(--u) * 5px); }
+.helptext p { font-size: calc(var(--u) * 6px); }
+.helptext b { color: #e8b923; }
+#overScore { font-size: calc(var(--u) * 10px); }
+
+.bar {
+  position: absolute; left: 0; right: 0; bottom: calc(var(--u) * 16px); display: none; justify-content: center; gap: calc(var(--u) * 6px);
+}
+.bar.on { display: flex; }
+.bar button { min-width: calc(var(--u) * 70px); }
+.corner {
+  position: absolute; right: calc(var(--u) * 3px); top: calc(var(--u) * 36px); display: none;
+  background: rgba(0, 0, 0, .45); color: #fff; box-shadow: none; font-size: calc(var(--u) * 7px); padding: calc(var(--u) * 3px) calc(var(--u) * 4px);
+}
+.corner.on { display: block; }
+#rotate {
+  display: none; position: fixed; left: 0; right: 0; top: 0; padding: 10px; font-size: 10px; text-align: center;
+  background: #e8b923; color: #1a1a1a;
+}
+@media (orientation: portrait) and (max-width: 700px) { #rotate { display: block; } }
